@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  api:
+    build: './api'
+    container_name: api
+    ports:
+      - '3001:3001'
+    networks:
+      - rede
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: teste_pratico
+      MYSQL_ROOT_PASSWORD: '12345678'
+      MYSQL_PASSWORD: '12345678'
+      MYSQL_USER: mysql_user
+      MYSQL_PORT: '3306'
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./infra/mysql/volumes/mysql_data:/var/lib/mysql
+    networks:
+      - rede
+
+networks:
+  rede:
+    driver: bridge
