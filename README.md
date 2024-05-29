@@ -33,7 +33,7 @@ A aplicação consiste em um cadastro de despesas utilizando uma api rest e aute
 ```json
 {
   "name" : "teste"
-	"email" : "teste@hotmail.com",
+  "email" : "teste@hotmail.com",
   "password" : "123123"
 }
 ```
@@ -44,7 +44,7 @@ A aplicação consiste em um cadastro de despesas utilizando uma api rest e aute
 
 ```json
 {
-	"email" : "teste@hotmail.com",
+  "email" : "teste@hotmail.com",
   "password" : "123123"
 }
 ```
