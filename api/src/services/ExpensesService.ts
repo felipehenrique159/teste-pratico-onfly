@@ -4,7 +4,7 @@ import { sendEmailNewExpensesSuccess } from "./EmailService";
 export default class ExpensesService {
     static async registerExpenses(request: any) {
         const expense = await ExpensesRepository.create(request.body, request.user.id)
-        await sendEmailNewExpensesSuccess('Despesa cadastrada!', request.user.email, expense)
+        //await sendEmailNewExpensesSuccess('Despesa cadastrada!', request.user.email, expense)
         return expense
     }
 
