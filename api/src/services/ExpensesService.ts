@@ -1,12 +1,15 @@
 import ExpensesRepository from "../repositories/ExpensesRepository";
+import { sendEmailNewExpensesSuccess } from "./EmailService";
 
 export default class ExpensesService {
     static async registerExpenses(request: any) {
-        return ExpensesRepository.create(request.body)
+        const expense = await ExpensesRepository.create(request.body, request.user.id)
+        await sendEmailNewExpensesSuccess('Despesa cadastrada!', request.user.email, expense)
+        return expense
     }
 
-    static async listAllExpenses(request: any) {
-        return ExpensesRepository.listAll(request.user.id)
+    static async listAllExpenses(idUser: number) {
+        return ExpensesRepository.listAll(idUser)
     }
 
     static async listExpense(request: any) {

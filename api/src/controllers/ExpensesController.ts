@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import ExpensesService from '../services/ExpensesService';
+import { JwtRequest } from '../interfaces/JwtRequest';
 
 export default class ExpensesController {
     static async newExpenses(request: Request, response: Response) {
@@ -12,9 +13,9 @@ export default class ExpensesController {
         }
     }
 
-    static async listAllExpenses(request: Request, response: Response) {
+    static async listAllExpenses(request: any, response: Response) {
         try {
-            const expenses = await ExpensesService.listAllExpenses(request);
+            const expenses = await ExpensesService.listAllExpenses(request.user.id);
             response.status(200).json({ expenses: expenses });
         } catch (error) {
             console.error('Error list all expenses:', error);

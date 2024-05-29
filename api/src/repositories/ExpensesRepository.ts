@@ -1,12 +1,12 @@
 import Expenses from "../database/models/Expenses";
 
 export default class ExpensesRepository {
-    static async create({description, date, value, user_id}: any) {
+    static async create({description, date, value}: any, idUser: number) {
         return await Expenses.create({
             description: description,
             date: date,
             value: value,
-            user_id: user_id
+            user_id: idUser
         });
     }
 
