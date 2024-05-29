@@ -27,7 +27,7 @@ export default class AuthService {
         const passwordValid = await comparePassword(password, user.password)
 
         if (passwordValid) {
-            return generateTokenJwt(request.body)
+            return generateTokenJwt(user)
         }
     }
 }
@@ -40,9 +40,12 @@ export const comparePassword = async (password: string, hashedPassword: string):
     return await bcrypt.compare(password, hashedPassword);
 };
 
-export const generateTokenJwt = async (requestBody: LoginUserRequest) => {
+export const generateTokenJwt = async (user: any) => {
     return {
-        token: jwt.sign(requestBody, 'secret_key_teste_pratico', { expiresIn: '1h' }),
+        token: jwt.sign({
+            id: user.id,
+            email: user.email
+        }, 'secret_key_teste_pratico', { expiresIn: '1h' }),
         expiries_in: '1h'
     } ;
 };
