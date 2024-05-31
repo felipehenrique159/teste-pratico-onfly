@@ -8,11 +8,12 @@ import { validateUpdateExpense } from './validators/expenses/validateUpdateExpen
 import { validateDeleteExpense } from './validators/expenses/validateDeleteExpense';
 import { validateRequest } from './middlewares/validateRequestMiddleware';
 import { validateLogin } from './validators/auth/validateLogin';
+import { validateRegister } from './validators/auth/validateRegister';
 import { JwtRequest } from './interfaces/JwtRequest';
 
 const routes = express.Router()
 
-routes.post('/auth/register', async (request: Request, response: Response) => {
+routes.post('/auth/register', validateRegister, validateRequest, async (request: Request, response: Response) => {
   return await AuthController.register(request, response);
 });
 
