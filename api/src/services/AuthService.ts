@@ -11,6 +11,12 @@ export default class AuthService {
     static async registerUser(request: RegisterUserRequest) {
         const user: RegisterUser = request.body
 
+        const existingUser = await UsersRepository.findByEmail(user.email)
+
+        if (existingUser) {
+            throw new Error('Email already in use');
+        }
+
         user.password = await hashPassword(user.password)
 
         return UsersRepository.create(user)
