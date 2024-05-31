@@ -7,7 +7,7 @@ A aplicação consiste em um cadastro de despesas utilizando uma api rest e aute
 ## Instruções para rodar a aplicação em docker
 
 - Primeiro, navegue ate a pasta api e crie uma copia do arquivo **.env.example** com o nome de **.env**, ja deixei as credenciais de e-mail previamente cadastrada, irei enviar a senha do mesmo no e-mail para a recrutadora, o e-mail que criei **testeonfly@outlook.com** é somente para facilitar o teste da aplicação
-- Na raiz do projeto execute o comando: **docker-compose up --build** para subir os contêiner
+- Após ajustar o .env com a senha do e-mail, volte para a raiz do projeto onde tem o **docker-compose.yml** e execute o comando: **docker-compose up --build** para subir os contêiner
 
 ### Uso de Migrate
 
