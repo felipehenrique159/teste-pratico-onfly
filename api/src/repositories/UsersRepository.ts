@@ -2,11 +2,11 @@ import Users from "../database/models/Users";
 import { RegisterUser } from "../interfaces/RegisterUser";
 
 export default class UsersRepository {
-    static async create({name, email, password}: RegisterUser) {
+    static async create(user: RegisterUser) {
         return await Users.create({
-            name: name,
-            email: email,
-            password: password
+            name: user.name,
+            email: user.email,
+            password: user.password
         });
     }
 

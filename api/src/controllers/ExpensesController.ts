@@ -3,7 +3,7 @@ import ExpensesService from '../services/ExpensesService';
 import { JwtRequest } from '../interfaces/JwtRequest';
 
 export default class ExpensesController {
-    static async newExpenses(request: Request, response: Response) {
+    static async newExpenses(request: JwtRequest, response: Response) {
         try {
             const expense = await ExpensesService.registerExpenses(request);
             response.status(201).json({ expense: expense });
@@ -13,8 +13,11 @@ export default class ExpensesController {
         }
     }
 
-    static async listAllExpenses(request: any, response: Response) {
+    static async listAllExpenses(request: JwtRequest, response: Response) {
         try {
+            if (!request.user) {
+                return ''
+            }
             const expenses = await ExpensesService.listAllExpenses(request.user.id);
             response.status(200).json({ expenses: expenses });
         } catch (error) {
@@ -23,7 +26,7 @@ export default class ExpensesController {
         }
     }
 
-    static async listExpense(request: Request, response: Response) {
+    static async listExpense(request: JwtRequest, response: Response) {
         try {
             const expense = await ExpensesService.listExpense(request);
             response.status(200).json({ expense: expense });
@@ -33,7 +36,7 @@ export default class ExpensesController {
         }
     }
 
-    static async updateExpense(request: Request, response: Response) {
+    static async updateExpense(request: JwtRequest, response: Response) {
         try {
             const expense = await ExpensesService.updateExpense(request);
             response.status(200).json({ expense: expense });
@@ -43,7 +46,7 @@ export default class ExpensesController {
         }
     }
 
-    static async deleteExpense(request: Request, response: Response) {
+    static async deleteExpense(request: JwtRequest, response: Response) {
         try {
             await ExpensesService.deleteExpense(request);
             response.status(200).json('Expense deleted!');

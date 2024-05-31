@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { RegisterUserRequest } from '../interfaces/RegisterUserRequest';
 import { LoginUserRequest } from '../interfaces/LoginUserRequest';
+import { UserJwt } from '../interfaces/UserJwt';
 
 export default class AuthService {
     static async registerUser(request: RegisterUserRequest) {
@@ -40,7 +41,7 @@ export const comparePassword = async (password: string, hashedPassword: string):
     return await bcrypt.compare(password, hashedPassword);
 };
 
-export const generateTokenJwt = async (user: any) => {
+export const generateTokenJwt = async (user: UserJwt) => {
     return {
         token: jwt.sign({
             id: user.id,
