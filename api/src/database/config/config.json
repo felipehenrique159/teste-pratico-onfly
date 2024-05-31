@@ -3,7 +3,7 @@
     "username": "mysql_user",
     "password": "12345678",
     "database": "teste_pratico",
-    "host": "localhost",
+    "host": "db",
     "dialect": "mysql",
     "migrations-path": "./src/database/migrations",
     "models-path": "./src/database/models"
